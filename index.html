@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<style>
+    .container{
+        position: absolute;
+        top: 50%;
+        left: 25%;
+        transform: translate(-50%, -50%);
+    }
+
+    td,th{
+        border: solid black 1px;
+        padding: 1rem;
+    }
+
+    table{
+        border-collapse: collapse;
+        max-width: 100%;
+        width: 600px;
+    }
+
+    h1{
+        text-align: center;
+    }
+
+    .second-container{
+        position: absolute;
+        top: 50%;
+        left: 75%;
+        transform: translate(-50%, -50%);
+    }
+
+    label{
+        display: inline-block;
+        width: 100px;
+        margin-bottom: 1rem;
+        max-width: 100%;
+    }
+</style>
+
+<body>
+    <div class="container">
+        <h1>Form</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                </tr>
+            </thead>
+            <tbody id="data-body">
+
+            </tbody>
+        </table>
+    </div>
+
+    <div class="second-container">
+        <h1>Input Form</h1>
+        <form action="/submit" method="POST">
+            <div class="form-input">
+                <label>First Name</label>
+                <input type="text" name="firstname" placeholder="First Name" />
+            </div>
+            <div class="form-input">
+                <label>Last Name</label>
+                <input type="text" name="lastname" placeholder="Last Name" />
+            </div>
+            <button type="submit">Submit</button>
+        </form> 
+    </div>
+
+    <script>
+    fetch('/data')
+      .then(response => response.json())
+      .then(data => {
+        const tbody = document.getElementById('data-body');
+        tbody.innerHTML = ''; // Clear previous rows
+
+        data.forEach((row, index) => {
+          const tr = document.createElement('tr');
+          tr.innerHTML = `
+            <td>${row.ID}</td>
+            <td>${row.FirstName}</td>
+            <td>${row.LastName}</td>
+          `;
+          tbody.appendChild(tr);
+        });
+      })
+      .catch(err => console.error('Error loading data:', err));
+    </script>
+</body>
+</html>
