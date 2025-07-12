@@ -1,0 +1,36 @@
+
+    .container{
+        position: absolute;
+        top: 50%;
+        left: 25%;
+        transform: translate(-50%, -50%);
+    }
+
+    td,th{
+        border: solid black 1px;
+        padding: 1rem;
+    }
+
+    table{
+        border-collapse: collapse;
+        max-width: 100%;
+        width: 600px;
+    }
+
+    h1{
+        text-align: center;
+    }
+
+    .second-container{
+        position: absolute;
+        top: 50%;
+        left: 75%;
+        transform: translate(-50%, -50%);
+    }
+
+    label{
+        display: inline-block;
+        width: 100px;
+        margin-bottom: 1rem;
+        max-width: 100%;
+    }
